@@ -9,18 +9,12 @@ import yaml
 sys.path.append('..')
 print(sys.path)
 from pythoncode.Calculator import Calculator
-add_file = "./datas/add.yaml"
-div_file = "./datas/div.yaml"
-
+datas_file = "./datas/calc.yml"
 
 def get_datas(method):
-    if method == "add":
-        with open(add_file) as f:
-            datas = yaml.safe_load(f)
-    elif method == "div":
-        with open(div_file) as f:
-            datas = yaml.safe_load(f)
-    return (datas['add']['datas'], datas['add']['ids'])
+    with open(datas_file) as f:
+        datas = yaml.safe_load(f)
+    return (datas[method]['datas'], datas[method]['ids'])
 
 
 # yaml json excel csv xml
@@ -28,7 +22,6 @@ def get_datas(method):
 class TestCalc:
     add_datas: list = get_datas("add")
     div_datas: list = get_datas("div")
-
     # 前置条件
     def setup_class(self):
         print("开始计算")
@@ -53,5 +46,12 @@ class TestCalc:
     # TODO: 相除功能
     @pytest.mark.parametrize("a, b, result", div_datas[0], ids=div_datas[1])
     def test_div(self, a, b, result):
-        print(f"a={a} , b ={b} ,result={result}")
-        assert result == self.calc.div(a,b)
+        if b == 0:
+            print("除数不能为0")
+            assert result == self.calc.div(a, b)
+        elif a or b is not int:
+            print("请输入数字")
+            assert result == self.calc.div(a, b)
+        else:
+            print(f"a={a} , b ={b} ,result={result}")
+            assert result == self.calc.div(a, b)

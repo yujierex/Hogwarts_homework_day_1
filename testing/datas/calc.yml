@@ -5,5 +5,21 @@ add:
     - [1,0,1]
     - [0.1,0.1,0.2]
     - [-1,1,0]
-  ids: ['int','zero','bignum','minus','result0']
+    - [a,2,a2]
+    - [a,b,ab]
+    - [?,0,?]
+  ids: ['int','zero','bignum','minus','result0','Error','Error','Error']
 
+div:
+  datas:
+    - [1,1,1]
+    - [2,1,2]
+    - [1,0,0]
+    - [0.1,0.1,0.1]
+    - [0.1,0.1,1]
+    - [-1,1,-1]
+    - [2,-2,-1]
+    - [a,2,a2]
+    - [a,b,ab]
+    - [?,0,?]
+  ids: ['int','int','Error','Error','int','int','int','Error','Error',Null]
