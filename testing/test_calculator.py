@@ -42,8 +42,7 @@ class TestCalc:
         #     print(data)
         #     assert data[2] == self.calc.add(data[0], data[1])
 
-    # TODO: 完善相加功能
-    # TODO: 相除功能
+    # 相除功能
     @pytest.mark.parametrize("a, b, result", div_datas[0], ids=div_datas[1])
     def test_div(self, a, b, result):
         if b == 0:
